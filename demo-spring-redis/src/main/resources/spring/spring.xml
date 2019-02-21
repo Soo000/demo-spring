@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- config -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+            <list>  
+                <!-- 这里支持多种寻址方式：classpath和file -->  
+                <value>classpath:db/jdbc.properties</value>  
+                <value>classpath:db/redis.properties</value>  
+                <!-- 推荐使用file的方式引入，这样可以将配置和代码分离 -->  
+            </list>  
+        </property>  
+    </bean>
+    
+    <!-- scan -->
+    <context:component-scan base-package="com.kkwrite.redis.comp" />
+    <context:component-scan base-package="com.kkwrite.redis.cache" />  
+	<context:component-scan base-package="com.kkwrite.redis.dao.*" />
+    <context:component-scan base-package="com.kkwrite.redis.service.*" />
+
+	<!-- import spring.redis.xml -->
+	<import resource="classpath:spring/spring.redis.xml"/>
+	<!-- import spring.mybatis.xml -->
+	<import resource="classpath:spring/spring.mybatis.xml"/>
+
+</beans>

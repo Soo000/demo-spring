@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	
+	<bean id="car" class="com.demospring.po.Car">
+		<property name="brand" value="大众"/>
+		<property name="corp" value="上海"/>
+		<property name="maxSpeed" value="200"/>
+	</bean>
+	
+	<bean id="car1" class="com.demospring.po.Car">
+		<property name="brand" value="哈佛"/>
+		<property name="corp" value="中国"/>
+		<property name="maxSpeed" value="300"/>
+	</bean>
+	
+	<bean id="car2" class="com.demospring.po.Car" parent="car">
+		<property name="brand" value="朗逸"/>
+		<property name="maxSpeed" value="260"/>
+	</bean>
+	
+	<!-- 通过scope熟悉设置Bean的模式 -->
+	<bean id="car3" class="com.demospring.po.Car" parent="car" scope="prototype">
+		<property name="brand" value="朗逸"/>
+		<property name="maxSpeed" value="260"/>
+	</bean>
+	
+	<!-- 通过静态工厂方法配置Bean
+		 factory-method: 指向静态工厂方法的名字
+		 constructor-arg: 如果工厂方法要传入参数，使用constructor-arg
+	-->
+	<bean id="car4" class="com.demospring.bean.factory.StaticCarFactory"
+		factory-method="getCar">
+		<constructor-arg value="langyi"/>
+	</bean>
+	
+	<!-- 实例工厂方法 -->
+	<bean id="instanceCarFactory" class="com.demospring.bean.factory.InstanceCarFactory">
+	</bean>
+	
+	<bean id="car5" factory-bean="instanceCarFactory" factory-method="getCar">
+		<constructor-arg value="langyi"/>
+	</bean>
+	
+	<!-- FactoryBean 配置Bean -->
+	<bean id="car7" class="com.demospring.bean.factory.CarFactoryBean">
+		<property name="brand" value="langyi"></property>
+		<property name="corp" value="上海"></property>
+	</bean>
+	
+	<!-- 地址 -->
+	<bean id="address" class="com.demospring.po.Address"
+		p:city="西安"
+		p:street="枣园西路">
+	</bean>
+	
+	<bean id="person" class="com.demospring.po.Person">
+		<property name="name" value="王珂"/>
+		<property name="age" value="33"/>
+		<property name="car" ref="car"/>
+		<property name="cars">
+			<list>
+				<ref bean="car"/>
+				<ref bean="car1"/>
+			</list>
+		</property>
+		<property name="phones">
+			<map>
+				<entry key="nokia" value="洛基亚"/>
+				<entry key="zte" value="中兴"/>
+				<entry key="hongmi" value="红米"/>
+				<entry key="xiaomi" value="小米note"/>
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 配置 Properties 属性 -->
+	<bean id="dataSource" class="com.demospring.bean.DataSource">
+		<property name="properties">
+			<props>
+				<prop key="url">jdbc:mysql</prop>
+				<prop key="username">root</prop>
+				<prop key="password">root</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 根据名称自动装配 -->
+	<bean id="personAutowire" class="com.demospring.bean.autowire.PersonAutowire"
+		p:name="wangke"
+		autowire="byName">
+	</bean>
+	
+	<!-- 依赖Bean的配置 -->
+	<bean id="personAutowire2" class="com.demospring.bean.autowire.PersonAutowire"
+		p:name="wangke2"
+		p:age="33"
+		p:address-ref="address"
+		depends-on="address">
+	</bean>
+	
+	<!-- 配置C3P0数据源 -->
+	<!-- <bean id="ds_c3p0" class="com.mchange.v2.c3p0.comboPooledDataSource">
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="url" value="jdbc:mysql:///test"></property>
+	</bean> -->
+	
+	<bean id="cycleBean" class="com.demospring.bean.cycle.CycleBean"
+		init-method="init" destroy-method="destroy">
+	</bean>
+	
+	<!-- Bean 处理器 -->
+	<bean id="myBeanProcessor" class="com.demospring.bean.inteface.processor.MyBeanProcessor">
+	</bean>
+
+	<!-- Spring扫描组件配置 -->
+	<context:component-scan base-package="com.demospring.bean.annotation">
+	</context:component-scan>
+</beans>

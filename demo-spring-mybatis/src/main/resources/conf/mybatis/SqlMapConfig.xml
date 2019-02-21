@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+	
+<configuration>
+
+	<!-- 加载属性文件 
+	<properties resource="config.properties"></properties>
+	-->
+	
+	<!-- 全局参数配置 -->
+	<settings>
+		<!-- 开启二级缓存 -->
+		<setting name="cacheEnabled" value="true" />
+	</settings>
+
+	<!-- 定义别名 -->
+	<typeAliases>
+		<!-- 配置单个别名
+		<typeAlias alias="Blog" type="com.mybatis.pojo.Blog" />
+		-->
+		<!-- 批量别名 
+		自动扫描 name 属性所指的包名 com.mybatis.pojo 包下所有的类，类名即别名
+		<package name="com.demospringmybatis.po"/>
+		-->
+	</typeAliases>
+
+	<!-- 加载映射文件 -->
+	<mappers>
+		<!-- resource 加载单个映射文件 -->
+		<mapper resource="sqlmap/User.xml" />
+		
+		<!-- mapper 接口加载映射文件
+			使用 mapper 代理方法
+			mapper 接口类名和 mapper.xml映射文件名一致，且在同一个目录 
+		<mapper class="com.demomybatis.mapper.UserMapper"/>
+		-->
+		
+		<!-- 批量加载 
+			使用 mapper 代理方法
+			mapper 接口类名和 mapper.xml映射文件名一致，且在同一个目录
+			name 指定mapper接口的报名
+		-->
+		<package name="com.demospringmybatis.mapper"/>
+	</mappers>
+</configuration>

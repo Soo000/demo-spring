@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	
+  <display-name>demo-springsession</display-name>
+
+	<!-- Spring 配置文件 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:spring/spring.xml</param-value>
+	</context-param>
+
+	<!-- Spring Session -->
+	<filter>
+		<filter-name>springSessionRepositoryFilter</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>springSessionRepositoryFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+	</filter-mapping>
+	
+	<!-- Spring 监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- SpringMvc 前端控制器 -->
+	<servlet>
+		<servlet-name>DispatherServlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<!-- 
+			contextConfigLocation 配置springMvc加载的配置文件（配置处理器、映射器、适配器等） 如果进行配置，
+			默认加载/WEB-INF/servlet名称-servlet.xml 
+		-->
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:spring/spring.webmvc.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>DispatherServlet</servlet-name>
+		<!-- 
+			1. / 所有访问地址由 DispatcherServlet （包括静态图片、文件、）,使用此种方法可以使用RESTful风格 
+			2. *.action 以 .action结尾的有 DispatcherServlet 解析
+			3. /*, 错误配置，最终要转发到一个jsp页面时，仍然由DispatcherServlet解析jsp，不能根据jsp页面找到handler,会报错 
+		-->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+  
+</web-app>

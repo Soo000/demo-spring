@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- 配置 Bean -->
+	<bean id="arithmeticCalculator" class="com.demospring.bean.aop.xml.ArithmeticCalculatorImpl">
+	</bean>
+	
+	<!-- 日志切面 Bean -->
+	<bean id="loggingAspect" class="com.demospring.bean.aop.xml.ArithmeticCalculatorLogging">
+	</bean>
+	
+	<!-- 校验切面 Bean -->
+	<bean id="validateAspect" class="com.demospring.bean.aop.xml.ArithmeticCalculatorValidate">
+	</bean>
+	
+	<!-- 配置AOP -->
+	<aop:config>
+		<!-- 配置切面表达式 -->
+		<aop:pointcut id="pointcut" expression="execution(* com.demospring.bean.aop.xml.ArithmeticCalculator.*(..))" />
+		
+		<!-- 配置切面 -->
+		<aop:aspect ref="loggingAspect" order="1" >
+			<!-- 配置前置通知 -->
+			<aop:before method="beforeMethod" pointcut-ref="pointcut"/>
+			<!-- 配置后置通知 -->
+			<aop:after method="afterMethod" pointcut-ref="pointcut"/>
+			<aop:after-throwing method="afterThrowing" pointcut-ref="pointcut" throwing="ex"/>
+		</aop:aspect>
+	</aop:config>
+</beans>

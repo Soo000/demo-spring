@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 等于 mapper接口的全限定名 -->
+<mapper namespace="com.demospringmybatis.mapper.UserMapper">
+
+	<!-- 根据 id 查询 -->
+	<select id="findUserById" parameterType="int" resultType="com.demospringmybatis.po.User">
+		select * from user where id = #{id}
+	</select>
+	
+	<!-- 根据姓名查询 -->
+	<select id="findUserByName" parameterType="string" resultType="com.demospringmybatis.po.User">
+		select * from user where username like '%${value}%'
+	</select>
+	
+	<!-- 综合查询 -->
+	<select id="findUserList" parameterType="com.demospringmybatis.po.UserQueryVo" resultType="com.demospringmybatis.po.UserCustom">
+		select * from user where user.sex = #{userCustom.sex} and user.username like '%${userCustom.username}%'
+	</select>
+	
+	<!-- 综合查询总数 -->
+	<select id="findUserCount" parameterType="com.demospringmybatis.po.UserQueryVo" resultType="int">
+		select count(1) from user where user.sex = #{userCustom.sex} and user.username like '%${userCustom.username}%'
+	</select>
+	
+	<!-- 插入用户 自增主键 -->
+	<insert id="insertUser" parameterType="com.demospringmybatis.po.User">
+		<!-- 
+			last_insert_id(): 获取刚 insert 的主键值，只使用自增主键
+			keyProperty: 将查询到的主键设置到到 parameterType指定的对象的属性中去
+			resultType: last_insert_id() 返回值得类型
+			order: last_insert_id()相对于insert执行的顺序
+		-->
+		<selectKey keyProperty="id" resultType="int" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+		
+		insert into user (username, birthday, sex, address) 
+		values (
+			#{username}, #{birthday}, #{sex}, #{address} 
+		)
+	</insert>
+	
+	<!-- 插入用户 非自增主键-->
+	<insert id="insertCustomer" parameterType="com.demospringmybatis.po.User">
+		<selectKey keyProperty="id" resultType="string" order="BEFORE">
+			select UUID()
+		</selectKey>
+		
+		insert into customer (id, username, birthday, sex, address) 
+		values (
+			#{id}, #{username}, #{birthday}, #{sex}, #{address} 
+		)
+	</insert>
+	
+	<!-- 更新用户 -->
+	<update id="updateUser" parameterType="com.demospringmybatis.po.User">
+		update user set username = #{username}, sex = #{sex}
+		where id = #{id}
+	</update>
+	
+	<delete id="deleteUserById" parameterType="int">
+		delete from user where id = #{id}
+	</delete>
+</mapper>
