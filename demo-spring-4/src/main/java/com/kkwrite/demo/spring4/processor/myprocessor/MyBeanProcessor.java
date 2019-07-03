@@ -1,4 +1,4 @@
-package com.demospring.bean.inteface.processor;
+package com.kkwrite.demo.spring4.processor.myprocessor;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
