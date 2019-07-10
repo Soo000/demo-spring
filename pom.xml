@@ -25,5 +25,6 @@
 		<module>demo-spring-rabbitmq</module>
 		<module>demo-spring-redis</module>
 		<module>demo-spring-mybatis</module>
+		<module>demo-spring-redis-lettuce</module>
 	</modules>
 </project>
