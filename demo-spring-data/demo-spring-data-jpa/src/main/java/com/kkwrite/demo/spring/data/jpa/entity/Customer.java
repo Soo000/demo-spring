@@ -64,17 +64,27 @@ public class Customer {
 	@JoinColumn(name = "customer_id")
 	private Set<Account> accounts = new HashSet<>();
 	
+	/**
+	 * 订单
+	 */
 	@OneToMany(mappedBy = "customer")
 	private Set<Order> orders = new HashSet<>();
+	
+	/**
+	 * 地址
+	 */
+	@OneToMany
+	@JoinColumn(name = "customer_id")
+	private Set<Address> addresses = new HashSet<>();
 
 	/**
-	 * 
+	 * 构造函数
 	 */
 	public Customer() {
 	}
 	
 	/**
-	 * 
+	 * 构造函数
 	 * @param lastName
 	 * @param password
 	 */
@@ -156,6 +166,13 @@ public class Customer {
 	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
 	}
+	public Set<Address> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(Set<Address> addresses) {
+		this.addresses = addresses;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", lastName=" + lastName + ", password=" + password + ", age=" + age + ", email="

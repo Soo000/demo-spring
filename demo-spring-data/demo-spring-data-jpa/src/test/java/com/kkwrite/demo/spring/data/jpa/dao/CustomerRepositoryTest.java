@@ -38,6 +38,12 @@ public class CustomerRepositoryTest {
 	}
 	
 	@Test
+	public void findByAddressId() {
+		Customer customer = customerResopistory.findByAddressesId(1);
+		System.out.println(customer);
+	}
+	
+	@Test
 	public void getByLastNameContaining() {
 		List<Customer> customers = customerResopistory.getByLastNameContaining("王");
 		customers.forEach(c -> {
@@ -51,6 +57,52 @@ public class CustomerRepositoryTest {
 		customers.forEach(c -> {
 			System.out.println(c);
 		});
+	}
+	
+	@Test
+	public void getMaxIdCustomer() {
+		Customer customer = customerResopistory.getMaxIdCustomer();
+		System.out.println(customer);
+	}
+	
+	@Test
+	public void getByParams() {
+		String lastName = "王";
+		String password = "123456";
+		String email = "49186456@qq.com";
+		
+		List<Customer> customers = customerResopistory.getByParams(lastName, password, email);
+		customers.forEach(c -> {
+			System.out.println(c);
+		});
+	}
+	
+	@Test
+	public void getByCustomParams() {
+		String lastName = "王";
+		String password = "123456";
+		String email = "49186456@qq.com";
+		
+		List<Customer> customers = customerResopistory.getByParams(lastName, password, email);
+		customers.forEach(c -> {
+			System.out.println(c);
+		});
+	}
+	
+	@Test
+	public void getByLikeParams() {
+		String lastName = "王";
+		String email = "49186456";
+		List<Customer> customers = customerResopistory.getByLikeParams(lastName, email);
+		customers.forEach(c -> {
+			System.out.println(c);
+		});
+	}
+	
+	@Test
+	public void updateLastName() {
+		int count = customerResopistory.updateLastName("王大侠", 1);
+		System.out.println(count);
 	}
 	
 }
