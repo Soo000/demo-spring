@@ -61,7 +61,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<!-- 5. 配置 SpringData -->
-	<!-- 加入  jpa 的命名空间 -->
+	<!-- 加入 jpa 的命名空间 -->
 	<!-- base-package: 扫描 Repository Bean 所在的 package -->
 	<jpa:repositories base-package="com.kkwrite.demo.spring.data.jpa"
 		entity-manager-factory-ref="entityManagerFactory">
