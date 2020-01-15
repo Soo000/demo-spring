@@ -3,14 +3,11 @@ package com.demo.spring.main;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.demo.annotation.conditional.Person;
 import com.demo.spring.DataSource;
-import com.demo.spring.annotation.controller.UserController;
-import com.demo.spring.annotation.repository.UserRepository;
-import com.demo.spring.annotation.service.UserService;
 import com.demo.spring.autowire.PersonAutowire;
 import com.demo.spring.cycle.CycleBean;
 import com.demo.spring.po.Car;
+import com.demo.spring.po.Person;
 
 public class Main {
 
@@ -49,15 +46,6 @@ public class Main {
 		CycleBean cycleBean = (CycleBean) classPathXmlApplicationContext.getBean("cycleBean");
 		System.out.println(cycleBean);
 		classPathXmlApplicationContext.close();
-		
-		UserController userController = (UserController) ctx.getBean("userController");
-		userController.save();
-		
-		UserService userService = (UserService) ctx.getBean("userService");
-		userService.save();
-		
-		UserRepository userRepository = (UserRepository) ctx.getBean("userRepository");
-		userRepository.save();
 	}
 
 }

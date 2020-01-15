@@ -1,4 +1,4 @@
-package com.demo.annotation.conditional;
+package com.demo.spring.annotation.conditional;
 
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;

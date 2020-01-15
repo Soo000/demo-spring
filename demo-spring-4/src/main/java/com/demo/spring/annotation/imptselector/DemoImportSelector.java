@@ -1,4 +1,4 @@
-package com.demo.annotation.imptselector;
+package com.demo.spring.annotation.imptselector;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;

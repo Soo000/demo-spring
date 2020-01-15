@@ -1,4 +1,4 @@
-package com.demo.annotation.imptbeandef;
+package com.demo.spring.annotation.imptbeandef;
 
 public class Mouse {
 	

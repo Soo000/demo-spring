@@ -1,4 +1,4 @@
-package com.demo.annotation.imptbeandef;
+package com.demo.spring.annotation.imptbeandef;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;

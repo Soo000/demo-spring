@@ -1,4 +1,4 @@
-package com.demo.annotation.impt;
+package com.demo.spring.annotation.impt;
 
 public class Dog {
 

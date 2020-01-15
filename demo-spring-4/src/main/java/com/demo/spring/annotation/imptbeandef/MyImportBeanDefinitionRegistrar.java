@@ -1,4 +1,4 @@
-package com.demo.annotation.imptbeandef;
+package com.demo.spring.annotation.imptbeandef;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;

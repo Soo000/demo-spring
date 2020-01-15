@@ -1,4 +1,4 @@
-package com.demo.annotation.conditional;
+package com.demo.spring.annotation.conditional;
 
 public class Person {
 

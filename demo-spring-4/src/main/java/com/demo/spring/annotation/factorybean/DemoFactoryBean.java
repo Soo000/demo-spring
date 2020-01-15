@@ -1,4 +1,4 @@
-package com.demo.annotation.factorybean;
+package com.demo.spring.annotation.factorybean;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
