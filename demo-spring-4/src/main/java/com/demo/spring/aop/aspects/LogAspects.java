@@ -17,7 +17,7 @@ public class LogAspects {
 	/**
 	 * execution表达式写不对会引起@bean注解注入LogAspects问题
 	 */
-	@Pointcut("execution(public int com.kkwrite.demo.spring4.aop.aspects.MathCalculator.*(..))")
+	@Pointcut("execution(public int com.demo.spring.aop.aspects.MathCalculator.*(..))")
 	public void logCut() {
 	}
 
@@ -39,7 +39,7 @@ public class LogAspects {
 		System.out.println("方法" + methodName + "环绕, 参数列表：" + args);
 	}*/
 
-	@After("com.kkwrite.demo.spring4.aop.aspects.LogAspects.logCut()")
+	@After("com.demo.spring.aop.aspects.LogAspects.logCut()")
 	public void logEnd(JoinPoint joinPoint) {
 		String methodName = joinPoint.getSignature().getName();
 		List<Object> args = Arrays.asList(joinPoint.getArgs());
