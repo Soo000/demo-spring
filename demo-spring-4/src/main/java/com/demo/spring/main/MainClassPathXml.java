@@ -9,7 +9,7 @@ import com.demo.spring.cycle.CycleBean;
 import com.demo.spring.po.Car;
 import com.demo.spring.po.Person;
 
-public class Main {
+public class MainClassPathXml {
 
 	private static ApplicationContext ctx;
 	
