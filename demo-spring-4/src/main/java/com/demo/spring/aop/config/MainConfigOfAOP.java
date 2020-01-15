@@ -6,6 +6,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import com.demo.spring.aop.aspects.LogAspects;
 import com.demo.spring.aop.aspects.MathCalculator;
+import com.demo.spring.aop.myhandler.MyHandler;
 
 @Configuration
 @EnableAspectJAutoProxy
@@ -19,6 +20,11 @@ public class MainConfigOfAOP {
 	@Bean
 	public LogAspects logAspects() {
 		return new LogAspects();
+	}
+	
+	@Bean
+	public MyHandler myHandler() {
+		return new MyHandler();
 	}
 	
 }
