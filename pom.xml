@@ -39,5 +39,6 @@
         <module>demo-spring.jpa</module>
         <module>demo-spring-jpa</module>
         <module>demo-spring-data</module>
+        <module>demo-spring-5</module>
 	</modules>
 </project>
