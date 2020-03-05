@@ -35,10 +35,9 @@
 		<module>demo-spring-session</module>
 		<module>demo-spring-rabbitmq</module>
 		<module>demo-spring-redis</module>
-		<module>demo-spring-mybatis</module>
 		<module>demo-spring-redis-lettuce</module>
-        <module>demo-spring-jpa</module>
-        <module>demo-spring-jpa</module>
         <module>demo-spring-data</module>
+        <module>demo-spring-jpa</module>
+        <module>demo-spring-mybatis</module>
 	</modules>
 </project>
