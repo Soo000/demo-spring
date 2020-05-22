@@ -1,29 +1,28 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.kkwrite.demo</groupId>
-		<artifactId>demo-spring</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
-	<artifactId>demo-spring-redis</artifactId>
-	<packaging>war</packaging>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.kkwrite.demo</groupId>
+        <artifactId>demo-spring</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>demo-spring-redis</artifactId>
+    <packaging>war</packaging>
     <properties>
         <junit.version>4.10</junit.version>
-        
+
         <javax.servlet.version>3.0.1</javax.servlet.version>
         <jstl.version>1.2</jstl.version>
         <log4j.version>1.2.17</log4j.version>
-        
+
         <org.springframework.version>4.3.9.RELEASE</org.springframework.version>
         <spring-data-redis.version>1.6.0.RELEASE</spring-data-redis.version>
         <jedis.version>2.7.3</jedis.version>
-        <com.fasterxml.jackson.version>2.9.9</com.fasterxml.jackson.version>
         <org.mybatis.version>3.4.1</org.mybatis.version>
         <org.mybatis.mybatis-spring.version>1.3.0</org.mybatis.mybatis-spring.version>
-        <mysql-connector-java.version>5.1.39</mysql-connector-java.version>
         <druid.version>1.0.29</druid.version>
+        <mysql-connector-java.version>5.1.39</mysql-connector-java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -68,25 +67,25 @@
             <artifactId>spring-jdbc</artifactId>
             <version>${org.springframework.version}</version>
         </dependency>
-        <dependency>  
-            <groupId>org.codehaus.jackson</groupId>  
-            <artifactId>jackson-mapper-asl</artifactId>  
-            <version>1.9.13</version>  
-        </dependency>  
-        <dependency>  
-            <groupId>com.fasterxml.jackson.core</groupId>  
-            <artifactId>jackson-annotations</artifactId>  
-            <version>${com.fasterxml.jackson.version}</version>  
-        </dependency>  
-        <dependency>  
-            <groupId>com.fasterxml.jackson.core</groupId>  
-            <artifactId>jackson-core</artifactId>  
-            <version>${com.fasterxml.jackson.version}</version>  
-        </dependency>  
-        <dependency>  
-            <groupId>com.fasterxml.jackson.core</groupId>  
-            <artifactId>jackson-databind</artifactId>  
-            <version>${com.fasterxml.jackson.version}</version>  
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.10.4</version>
         </dependency>
         <!-- BEGIN org.mybatis -->
         <dependency>
@@ -117,15 +116,15 @@
         </dependency>
         <!-- END druid -->
         <!-- BEGIN spring-redis -->
-        <dependency>  
-            <groupId>org.springframework.data</groupId>  
-            <artifactId>spring-data-redis</artifactId>  
-            <version>${spring-data-redis.version}</version>  
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${spring-data-redis.version}</version>
         </dependency>
-        <dependency>  
-            <groupId>redis.clients</groupId>  
-            <artifactId>jedis</artifactId>  
-            <version>${jedis.version}</version>  
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
         </dependency>
         <!-- END spring-redis -->
     </dependencies>
@@ -145,6 +144,6 @@
                     <server>tomcat7</server>
                 </configuration>
             </plugin>
-        </plugins>      
-    </build>	
+        </plugins>
+    </build>
 </project>
