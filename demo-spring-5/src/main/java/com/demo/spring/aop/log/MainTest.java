@@ -16,21 +16,21 @@ public class MainTest {
 
         // 用户管理
         UserService userService = cxt.getBean(UserService.class);
-        System.out.println(userService);
 
         UserDO userDO = new UserDO();
         userDO.setUsername("Wang Ke");
         userDO.setAge(18);
         userService.save(userDO);
 
-        userService.update(userDO);
-        userService.delete(1L);
+        //userService.update(userDO);
+
+        //userService.delete(1L);
 
         // 角色管理
-        RoleService roleService = cxt.getBean(RoleService.class);
+        /*RoleService roleService = cxt.getBean(RoleService.class);
         RoleDO roleDO = new RoleDO();
         roleDO.setRoleName("管理员");
-        roleService.save(roleDO);
+        roleService.save(roleDO);*/
     }
 
 }

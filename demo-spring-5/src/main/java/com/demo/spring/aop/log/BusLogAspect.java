@@ -1,7 +1,7 @@
 package com.demo.spring.aop.log;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 描述信息
+ * 业务日志切面
  *
  * @author Ke Wang
  * @date 2020/7/14
@@ -25,22 +25,67 @@ public class BusLogAspect {
     }
 
     /**
-     * 查询记录日志
+     * 前置通知，查询记录日志
      */
     @Before("cutAllMethod()")
     public void beforeMethod(JoinPoint joinPoint) {
         String params = getMethodParams(joinPoint);
-        System.out.println("参数信息：" + params);
+        System.out.println("执行前置通知，获取方法入参：" + params);
     }
 
     /**
-     * CUD(增、修、删)记录日志
+     * 环绕通知
      */
-    @AfterReturning("cutAllMethod()")
-    public void aroundMethod(JoinPoint joinPoint) {
-        String params = getMethodParams(joinPoint);
-        System.out.println("参数信息：" + params);
+    @Around("cutAllMethod()")
+    public Object roundMethod(ProceedingJoinPoint proceedingJoinPoint) {
+        // 连接点方法的实参
+        Object[] args = proceedingJoinPoint.getArgs();
+        // 连接点方法的方法名
+        String methodName = proceedingJoinPoint.getSignature().getName();
+        // 连接点方法所在的对象
+        Object targetObj = proceedingJoinPoint.getTarget();
+        String targetClassName = targetObj.getClass().getName();
 
+        Object result = null;
+        try {
+            System.out.println("执行环绕通知的前置通知...");
+            // 执行连接点的方法 获取返回值
+            result = proceedingJoinPoint.proceed(args);
+            System.out.println("执行环绕通知的返回通知 result = " + result);
+        } catch (Throwable e) {
+            System.out.println("执行环绕通知的异常通知 e: " + e.getMessage());
+        } finally {
+            System.out.println("环绕通知通知的最终通知");
+        }
+        return result;
+    }
+
+    /**
+     * 后置通知
+     * @param joinPoint
+     */
+    @After("cutAllMethod()")
+    public void afterMethod(JoinPoint joinPoint) {
+        System.out.println("执行后置通知");
+    }
+
+    /**
+     * 返回通知，CUD(增、修、删)记录日志
+     */
+    @AfterReturning(pointcut = "cutAllMethod()", returning = "result")
+    public void afterReturingMethod(JoinPoint joinPoint, Object result) {
+        // 返回结果
+        System.out.println("执行返回通知：" + result);
+    }
+
+    /**
+     * 异常通知
+     * @param joinPoint
+     * @param e
+     */
+    @AfterThrowing(pointcut = "cutAllMethod()", throwing = "e")
+    public void afterThrowing(JoinPoint joinPoint, Exception e) {
+        System.out.println("执行异常通知：" + e.getMessage());
     }
 
     /**
