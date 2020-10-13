@@ -10,7 +10,7 @@
     <artifactId>demo-spring-redis</artifactId>
     <packaging>war</packaging>
     <properties>
-        <junit.version>4.10</junit.version>
+        <junit.version>4.13.1</junit.version>
 
         <javax.servlet.version>3.0.1</javax.servlet.version>
         <jstl.version>1.2</jstl.version>
